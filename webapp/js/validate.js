@@ -2,24 +2,24 @@ var FormElement = document.forms['loginForm'];
 FormElement.onsubmit = ValidateInfoForm;
 function ValidateInfoForm() {
     var FormElement = document.forms['loginForm'];
-    var NameElement = FormElement.elements['login'];
-    var NameValue = NameElement.value;
-    var EmailElement = FormElement.elements['password'];
-    var EmailValue = EmailElement.value;
+    var LoginElement = FormElement.elements['login'];
+    var LoginValue = LoginElement.value;
+    var PasswordElement = FormElement.elements['password'];
+    var PasswordValue = PasswordElement.value;
     var ErrorCounter = 0;
-    if (NameValue.length == 0) {
+    if (LoginValue.length == 0) {
         ErrorCounter++;
-        NameElement.classList.add("error");
+        LoginElement.classList.add("error");
     }
     else {
-        NameElement.classList.remove("error");
+        LoginElement.classList.remove("error");
     }
-    if (EmailValue.length == 0) {
+    if (PasswordValue.length == 0) {
         ErrorCounter++;
-        EmailElement.classList.add("error")
+        PasswordElement.classList.add("error")
     }
     else {
-        EmailElement.classList.remove("error");
+        PasswordElement.classList.remove("error");
     }
     if (ErrorCounter != 0) {
         return false
