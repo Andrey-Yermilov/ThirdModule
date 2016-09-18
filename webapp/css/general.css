@@ -1,0 +1,182 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #EDFDFF;
+    height: 100%;
+    font-family: Calibri, Cambria, serif;
+    font-size: 1.2em;
+}
+
+.footer::-moz-selection, a::-moz-selection, img::-moz-selection, iframe::-moz-selection {
+    background: none;
+}
+
+.footer::selection, a::selection, img::selection, iframe::selection {
+    background: none;
+}
+
+p::-moz-selection, span::-moz-selection, label::-moz-selection, input::-moz-selection, div::-moz-selection, td::-moz-selection {
+    background: rgba(36, 51, 157, 0.4);
+}
+
+p::selection, span::selection, label::selection, input::selection, div::selection, td::selection {
+    background: rgba(36, 51, 157, 0.4);
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: block;
+    max-width: 52em;
+    width: 100%;
+    color: midnightblue;
+    text-align: center;
+    margin-bottom: 3em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1em;
+}
+
+.tours {
+    color: midnightblue;
+}
+
+form {
+    max-width: 23em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+}
+
+label {
+    float: left;
+    width: 6em;
+    clear: left;
+    line-height: 140%;
+}
+
+#login, #password {
+    float: left;
+    width: 100%;
+    background: rgba(221, 228, 235, 0);
+    border: 1px solid midnightblue;
+}
+
+#login_container, #password_container {
+    margin-left: 6em;
+}
+
+#login_container input, #password_container input {
+    color: midnightblue;
+    min-height: 1.3em;
+}
+
+#exit {
+    float: right;
+}
+
+#submit, #exit {
+    margin-top: 0.3em;
+    clear: both;
+
+}
+
+#submit input, #exit button {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-family: Calibri, Cambria, serif;
+    font-size: 1.2em;
+    color: midnightblue;
+    border: 1px solid midnightblue;
+    margin-top: 0.3em;
+}
+
+#logoutForm {
+    display: inline;
+}
+
+.error {
+    border: 2px solid red !important;
+}
+
+#errorMsg {
+    color: red !important;
+    clear: left;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    padding-top: 1em;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    padding-left: calc((100% - 40em) / 2 + 2em);
+    z-index: 1;
+    bottom: 0;
+    text-align: left;
+    color: #24339D;
+    height: 2em;
+    cursor: default;
+}
+
+.content p {
+    line-height: 1.5em;
+    margin: 1em auto;
+}
+
+.error404, .error404 h1 {
+    color: red !important;
+    text-align: center;
+}
+
+@media all and (max-width: 52em) {
+    .header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer {
+        padding-left: 3em;
+    }
+
+    .content {
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    .content {
+        padding-top: 0.5em;
+    }
+}
+
+@media all and (max-width: 33em) {
+    #login_container, #password_container, label, #submit {
+        margin-left: 0em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
