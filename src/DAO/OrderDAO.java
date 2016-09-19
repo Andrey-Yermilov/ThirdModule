@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderDAO extends AbstractDAO<Integer, Order> {
     public static final String SQL_SELECT_ALL_TOURS_BY_USERID = "SELECT cart.id, user.name, user.login, tour.country,tour.price*(1-(cart.discount)/100) as price,tour_type.name AS type, tour.burning " +
             "FROM cart, user, tour,tour_type " +
-            "WHERE cart.client_id=user.id AND cart.tour_id=tour.id AND tour.type_id=tour_type.id AND user.id=?";
+            "WHERE cart.client_id=user.id AND cart.tour_id=tour.id AND tour.type_id=tour_type.id AND user.id=? ORDER BY tour.country";
     public static final String SQL_CREATE_ORDER = "INSERT INTO cart (client_id, tour_id) VALUES (?,?);";
 
     public OrderDAO() {

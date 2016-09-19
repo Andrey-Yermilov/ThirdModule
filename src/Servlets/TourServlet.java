@@ -2,8 +2,10 @@ package Servlets;
 
 import DAO.OrderDAO;
 import DAO.TourDAO;
+import DAO.UserDAO;
 import DTO.Order;
 import DTO.Tour;
+import DTO.User;
 import Utils.CookieUtils;
 
 import javax.servlet.ServletContext;
@@ -46,7 +48,10 @@ public class TourServlet extends HttpServlet {
         orderDAO = new OrderDAO();
         int userId = CookieUtils.checkUserByCookie(request);
         if (userId != 0) {
+            User user = (new UserDAO()).findEntityById(userId);
             ServletContext context = getServletContext();
+            context.setAttribute("name", user.getName());
+            context.setAttribute("userId", user.getId());
             List<Tour> tours = tourDAO.findAll();
             List<Order> orders = orderDAO.findAllByUserId(userId);
             context.setAttribute("orders", orders);

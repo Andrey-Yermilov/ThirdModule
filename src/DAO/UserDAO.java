@@ -16,6 +16,7 @@ import java.util.List;
 public class UserDAO extends AbstractDAO<Integer, User> {
     public static final String SQL_SELECT_ALL_USERS = "SELECT user.id,user.name,user.login,user.password, role.role, user.uid FROM user,role WHERE user.role_id=role.id";
     public static final String SQL_SELECT_USER_BY_LOGIN = "SELECT user.id,user.name,user.login,user.password, role.role, user.uid FROM user,role WHERE user.role_id=role.id AND user.login=?";
+    public static final String SQL_SELECT_USER_BY_ID = "SELECT user.id,user.name,user.login,user.password, role.role, user.uid FROM user,role WHERE user.role_id=role.id AND user.id=?";
     public static final String SQL_SELECT_USER_BY_COOKIE = "SELECT user.id,user.name,user.login,user.password, role.role, user.uid FROM user,role WHERE user.role_id=role.id AND uid=?";
     public static final String SQL_UPDATE_COOKIE = "UPDATE user SET uid=? WHERE id=?";
 
@@ -52,9 +53,34 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         return users;
     }
 
+    /**
+     * find user by user's id
+     * @param id user's id
+     * @return user
+     */
     @Override
     public User findEntityById(Integer id) {
-        return null;
+        User user = null;
+        PreparedStatement st = null;
+        try {
+            st = connector.prepareStatement(SQL_SELECT_USER_BY_ID);
+            st.setInt(1, id);
+            ResultSet resultSet = st.executeQuery();
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setLogin(resultSet.getString("login"));
+                user.setPassword(resultSet.getString("password"));
+                user.setRole(resultSet.getString("role"));
+                user.setUid(resultSet.getString("uid"));
+            }
+        } catch (SQLException e) {
+            System.err.println("SQL exception (request or table failed): " + e);
+        } finally {
+            this.closeStatement(st);
+        }
+        return user;
     }
 
     @Override
