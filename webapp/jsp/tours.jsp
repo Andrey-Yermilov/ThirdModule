@@ -42,9 +42,11 @@
                             <td>
                                 <c:out value="${ tour.price }"/>
                             </td>
-                            <td>
-                                <c:out value="${ tour.burning }"/>
-                            </td>
+                            <th>
+                                <c:if test="${tour.burning=='Да'}">
+                                    <img src="images/burning.png"/>
+                                </c:if>
+                            </th>
                             <th><input name="tourId" type="radio" value="${ tour.id }"></th>
                         </tr>
                     </c:forEach>
