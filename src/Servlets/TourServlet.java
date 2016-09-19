@@ -22,6 +22,7 @@ import java.util.List;
 public class TourServlet extends HttpServlet {
     TourDAO tourDAO;
     OrderDAO orderDAO;
+    UserDAO userDAO;
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -36,8 +37,9 @@ public class TourServlet extends HttpServlet {
     }
 
     /**
-     * check user by cookei and if cookie are correct display all available tours and all user's tours
-     * @param request HttpServletRequest
+     * check user by cookie and if cookie are correct display all available tours and all user's tours
+     *
+     * @param request  HttpServletRequest
      * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
@@ -48,7 +50,8 @@ public class TourServlet extends HttpServlet {
         orderDAO = new OrderDAO();
         int userId = CookieUtils.checkUserByCookie(request);
         if (userId != 0) {
-            User user = (new UserDAO()).findEntityById(userId);
+            userDAO = new UserDAO();
+            User user = userDAO.findEntityById(userId);
             ServletContext context = getServletContext();
             context.setAttribute("name", user.getName());
             context.setAttribute("userId", user.getId());
@@ -67,5 +70,6 @@ public class TourServlet extends HttpServlet {
         super.destroy();
         tourDAO.close();
         orderDAO.close();
+        userDAO.close();
     }
 }
