@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO for tours handling
+ */
 public class TourDAO extends AbstractDAO<Integer, Tour> {
     public static final String SQL_SELECT_ALL_TOURS = "SELECT tour.id, tour.country,tour.price,tour_type.name AS tour_type, tour.burning FROM tour,tour_type WHERE tour.type_id=tour_type.id ORDER BY tour.id;";
 
@@ -16,6 +19,10 @@ public class TourDAO extends AbstractDAO<Integer, Tour> {
         this.connector = new WrapperConnector();
     }
 
+    /**
+     * find all available tours
+     * @return list of all available tours
+     */
     @Override
     public List<Tour> findAll() {
         List<Tour> tours = new ArrayList<>();

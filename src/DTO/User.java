@@ -1,5 +1,8 @@
 package DTO;
 
+/**
+ * user DTO
+ */
 public class User extends Entity {
     private String name;
     private String login;

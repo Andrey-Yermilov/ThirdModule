@@ -10,6 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO for users handling
+ */
 public class UserDAO extends AbstractDAO<Integer, User> {
     public static final String SQL_SELECT_ALL_USERS = "SELECT user.id,user.name,user.login,user.password, role.role, user.uid FROM user,role WHERE user.role_id=role.id";
     public static final String SQL_SELECT_USER_BY_LOGIN = "SELECT user.id,user.name,user.login,user.password, role.role, user.uid FROM user,role WHERE user.role_id=role.id AND user.login=?";
@@ -20,6 +23,10 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         this.connector = new WrapperConnector();
     }
 
+    /**
+     * find all users
+     * @return list of all users
+     */
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
@@ -60,6 +67,11 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         return null;
     }
 
+    /**
+     * find user by login
+     * @param login user's login
+     * @return user
+     */
     public User findUserByLogin(String login) {
         User user = null;
         PreparedStatement st = null;
@@ -84,6 +96,11 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         return user;
     }
 
+    /**
+     * find user by cookie
+     * @param uid user's cookie
+     * @return user
+     */
     public User findUserByCookie(String uid) {
         User user = null;
         PreparedStatement st = null;
@@ -108,6 +125,12 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         return user;
     }
 
+    /**
+     * update user's cookie
+     * @param userId user's id
+     * @param uid new cookei
+     * @return number of affected rows
+     */
     public int updateCookie(int userId, String uid) {
         PreparedStatement st = null;
         int affectedRows = 0;
@@ -116,7 +139,6 @@ public class UserDAO extends AbstractDAO<Integer, User> {
             st.setString(1, uid);
             st.setInt(2, userId);
             affectedRows = st.executeUpdate();
-
         } catch (SQLException e) {
             System.err.println("SQL exception (request or table failed): " + e);
         } finally {
@@ -124,5 +146,4 @@ public class UserDAO extends AbstractDAO<Integer, User> {
         }
         return affectedRows;
     }
-
 }

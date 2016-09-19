@@ -3,6 +3,9 @@ package Utils;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * filter which sets encoding to request and response
+ */
 public class CharsetFilter implements Filter {
     private String encoding;
 

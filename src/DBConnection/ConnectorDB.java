@@ -6,12 +6,20 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * class performs connection to database and returns Connection object
+ */
 public class ConnectorDB {
     private static volatile Connection connection = null;
 
     private ConnectorDB() {
     }
 
+    /**
+     * get connection
+     * @return connection
+     * @throws SQLException
+     */
     public static Connection getConnection() throws SQLException {
         Connection localInstance = connection;
         try {
@@ -27,8 +35,6 @@ public class ConnectorDB {
         prop.put("autoReconnect", resource.getString("autoReconnect"));
         prop.put("characterEncoding", resource.getString("characterEncoding"));
         prop.put("useUnicode", resource.getString("useUnicode"));
-
-
         if (localInstance == null) {
             synchronized (ConnectorDB.class) {
                 localInstance = connection;

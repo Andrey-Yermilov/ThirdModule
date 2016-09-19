@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO for orders handling
+ */
 public class OrderDAO extends AbstractDAO<Integer, Order> {
     public static final String SQL_SELECT_ALL_TOURS_BY_USERID = "SELECT cart.id, user.name, user.login, tour.country,tour.price*(1-(cart.discount)/100) as price,tour_type.name AS type, tour.burning " +
             "FROM cart, user, tour,tour_type " +
@@ -40,6 +43,11 @@ public class OrderDAO extends AbstractDAO<Integer, Order> {
         return null;
     }
 
+    /**
+     * find all orders by user's id
+     * @param id user's id
+     * @return list of all user's orders
+     */
     public List<Order> findAllByUserId(int id) {
         List<Order> orders = new ArrayList<>();
         PreparedStatement st = null;
@@ -66,8 +74,13 @@ public class OrderDAO extends AbstractDAO<Integer, Order> {
         return orders;
     }
 
+    /**
+     * create order
+     * @param tourId tour's id
+     * @param userId user's id
+     * @return number of affected rows
+     */
     public int create(int tourId, int userId) {
-
         PreparedStatement st = null;
         int affectedRows = 0;
         try {

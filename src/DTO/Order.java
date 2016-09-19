@@ -1,5 +1,8 @@
 package DTO;
 
+/**
+ * order DTO
+ */
 public class Order extends Entity {
     private String userName;
     private String userLogin;

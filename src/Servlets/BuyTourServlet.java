@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * servlet which handles buy action
+ */
 public class BuyTourServlet extends HttpServlet {
     OrderDAO orderDAO = new OrderDAO();
 
@@ -26,6 +29,13 @@ public class BuyTourServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * get tour's id and user's id, update DB and reload tours page
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request,
                                   HttpServletResponse response) throws ServletException, IOException {
         int tourId = 0;

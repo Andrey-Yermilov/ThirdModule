@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * wrapper for statement operations
+ */
 public class WrapperConnector {
     private Connection connection;
 
@@ -16,6 +19,11 @@ public class WrapperConnector {
         }
     }
 
+    /**
+     * get statement
+     * @return statement
+     * @throws SQLException
+     */
     public Statement getStatement() throws SQLException {
         if (connection != null) {
             Statement statement = connection.createStatement();
@@ -26,6 +34,12 @@ public class WrapperConnector {
         throw new SQLException("connection or statement is null");
     }
 
+    /**
+     * get prepared statement
+     * @param sql template
+     * @return prepared statement
+     * @throws SQLException
+     */
     public PreparedStatement prepareStatement(String sql) throws SQLException {
         if (connection != null) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -36,6 +50,10 @@ public class WrapperConnector {
         throw new SQLException("connection or statement is null");
     }
 
+    /**
+     * close statement
+     * @param statement
+     */
     public void closeStatement(Statement statement) {
         if (statement != null) {
             try {
@@ -46,6 +64,9 @@ public class WrapperConnector {
         }
     }
 
+    /**
+     * close connection
+     */
     public void closeConnection() {
         if (connection != null) {
             try {

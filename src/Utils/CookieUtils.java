@@ -8,7 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Random;
 
+/**
+ * utility class for operations with cookie
+ */
 public class CookieUtils {
+    /**
+     * generate new cookie uid
+     * @return cookie
+     */
     public static String generateUid() {
         Random random = new Random();
         String validChars = "abcdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -19,6 +26,11 @@ public class CookieUtils {
         return new String(text);
     }
 
+    /**
+     * method generates new cookie, updates DB with new cookie value and set cookie in response
+     * @param response Http Servlet Response
+     * @param user user
+     */
     public static void setCookie(HttpServletResponse response, User user) {
         UserDAO userDAO = new UserDAO();
         String uid = generateUid();
@@ -27,6 +39,10 @@ public class CookieUtils {
         userDAO.updateCookie(user.getId(), uid);
     }
 
+    /**
+     * method extracts cookie uid from request and delete this value from DB
+     * @param request Http Servlet Request
+     */
     public static void invalidateCookie(HttpServletRequest request) {
         String uid = extractUid(request);
         UserDAO userDAO = new UserDAO();
@@ -36,6 +52,11 @@ public class CookieUtils {
         }
     }
 
+    /**
+     * method extracts cookie uid from request
+     * @param request Http Servlet Request
+     * @return cookie uid
+     */
     public static String extractUid(HttpServletRequest request) {
         String uid = null;
         Cookie[] cookies = request.getCookies();
@@ -49,6 +70,11 @@ public class CookieUtils {
         return uid;
     }
 
+    /**
+     * method find user by cookie and if user exists returns his id
+     * @param request Http Servlet Request
+     * @return user's id
+     */
     public static int checkUserByCookie(HttpServletRequest request) {
         int userId = 0;
         String uid = extractUid(request);

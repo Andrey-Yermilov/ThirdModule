@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * servlet which handles login action
+ */
 public class LoginServlet extends HttpServlet {
     UserDAO userDAO;
 
@@ -30,6 +32,13 @@ public class LoginServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * get user's login and password and redirect to tour page if they are correct
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request,
                                   HttpServletResponse response) throws ServletException, IOException {
 

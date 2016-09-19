@@ -1,5 +1,8 @@
 package DTO;
 
+/**
+ * tour DTO
+ */
 public class Tour extends Entity {
     private String type;
     private String country;

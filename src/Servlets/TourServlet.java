@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * servlet which handles action with tours page
+ */
 public class TourServlet extends HttpServlet {
     TourDAO tourDAO;
     OrderDAO orderDAO;
@@ -30,6 +33,13 @@ public class TourServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * check user by cookei and if cookie are correct display all available tours and all user's tours
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request,
                                   HttpServletResponse response) throws ServletException, IOException {
         tourDAO = new TourDAO();
